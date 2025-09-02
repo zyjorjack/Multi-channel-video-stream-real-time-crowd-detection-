@@ -6,29 +6,29 @@
 ✅ 数据持久化：检测结果自动存入 SQLite 数据库和 485 协议传输，支持历史查询
 ✅ 实时显示与监控：使用 OpenCV 实时显示检测画面，支持画面标注与计数展示
 
-# 编译：
+编译：
 rm -rf build  # 如果项目名称和内容发生变化，删除旧的 build 目录（包括 CMakeCache.txt）
 cmake -S . -B build   # 构建
 cmake --build build/  # 编译
 
-# 修改458串口号并设置权限：
+修改458串口号并设置权限：
 在src/yolov8_thread_pool_hik.cpp中 init_serial_comm("/dev/tty0");
 sudo chmod 666 /dev/tty0
 
-# 基于海康SDK的运行命令（程序地址 模型地址 海康摄像头配置文件 线程数量）
+基于海康SDK的运行命令（程序地址 模型地址 海康摄像头配置文件 线程数量）
 ./build/yolov8_thread_pool_hik ./weights/yolov8s.int.rknn cameras_config.txt 30
 ./build/yolov8_thread_pool_hik ./weights/Gate_people_counting_8n_int.rknn cameras_config.txt 20
 ./build/yolov8_thread_pool_hik ./weights/Gate_people_countingv32_8n_int.rknn cameras_config.txt 20
 
-# 查看数据库内容
-# 查看检测结果表的所有数据：
+查看数据库内容
+查看检测结果表的所有数据：
 sqlite3 detection_results.db "SELECT * FROM detection_results ORDER BY id DESC;"
-# 查看最新的5条记录：
+查看最新的5条记录：
 sqlite3 detection_results.db "SELECT * FROM detection_results ORDER BY id DESC LIMIT 5;"
-# 查看表结构：
+查看表结构：
 sqlite3 detection_results.db ".schema detection_results"
 
-# 适用场景：
+适用场景：
 商场/超市人流量统计
 地铁站/火车站实时监控
 场馆/展览会人流管理
