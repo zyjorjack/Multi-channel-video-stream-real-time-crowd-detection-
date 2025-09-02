@@ -1,4 +1,3 @@
-
 # 项目介绍：
 ✅ 多路摄像头支持：可同时接入多个海康摄像头，支持自定义配置
 ✅ YOLOv8 实时检测：基于 Ultralytics YOLOv8 的高精度人体检测
@@ -9,8 +8,8 @@
 
 # 编译：
 rm -rf build  # 如果项目名称和内容发生变化，删除旧的 build 目录（包括 CMakeCache.txt）
-cmake -S . -B build  # 重新生成
-cmake --build build/
+cmake -S . -B build   # 构建
+cmake --build build/  # 编译
 
 # 修改458串口号并设置权限：
 在src/yolov8_thread_pool_hik.cpp中 init_serial_comm("/dev/tty0");
